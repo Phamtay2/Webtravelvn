@@ -24,7 +24,6 @@ RUN if [ ! -f .env ]; then cp .env.example .env; fi
 RUN composer install --no-dev --optimize-autoloader \
  && php artisan config:clear \
  && php artisan key:generate \
- && php artisan migrate --force \
  && php artisan config:cache
 
 # Expose port Laravel Serve
