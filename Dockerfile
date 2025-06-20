@@ -2,8 +2,9 @@ FROM php:8.2-fpm
 
 # Cài các extension cần thiết
 RUN apt-get update && apt-get install -y \
-    git unzip curl libpng-dev libjpeg-dev libfreetype6-dev sqlite3 libsqlite3-dev \
+    git unzip curl libpng-dev libjpeg-dev libfreetype6-dev sqlite3 libsqlite3-dev libonig-dev \
     && docker-php-ext-install pdo pdo_mysql pdo_sqlite mbstring gd
+
 
 # Cài Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
