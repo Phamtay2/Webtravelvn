@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: webtravelvn
+    env: php
+    plan: free
+    buildCommand: |
+      composer install
+      php artisan config:cache
+      php artisan migrate --force || true
+    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: /data/database.sqlite
