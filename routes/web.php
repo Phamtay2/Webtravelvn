@@ -20,7 +20,7 @@ Route::get('/', [IndexController::class, 'index'])->name('hom');
 Route::get('/tour/{slug}', [IndexController::class, 'tour'])->name('tour');
 Route::get('/chi-tiet-tour/{slug}', [IndexController::class, 'detail_tour'])->name('chi-tiet-tour');
 
-Auth::routes();
+
 
 
 //categories
