@@ -17,8 +17,9 @@
                         <div class="col-md-12 col-xs-12 bx-content-lst-tour">
 
                             <div class="row">
-                                @foreach ($tours as $key => $tour)
-                                @if ($tour->category->id == $cate_parent->id)
+                                @foreach ($tours->where('category.id', $cate_parent->id) as $tour)
+                                {{-- @foreach ($tours as $key => $tour)
+                                @if ($tour->category->id == $cate_parent->id) --}}
 
                                     <div class="col-md-4 col-xs-12 lst-tour-item" style="max-width:380px;">
                                             

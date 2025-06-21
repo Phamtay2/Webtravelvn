@@ -18,7 +18,12 @@ class IndexController extends Controller
         foreach ($category_sub_cate as $key => $value) {
             $category_subs[] = $value->id;
         }
-        $tours = Tour::with('category')->orderBy('id', 'DESC')->get();
+        $tours = Tour::with('category')
+        ->whereHas('category') // Chỉ lấy các tour có category tồn tại
+        ->orderBy('id', 'DESC')
+        ->get();
+
+        // $tours = Tour::with('category')->orderBy('id', 'DESC')->get();
         // print_r($category_subs);
         return view('pages.home', compact('category_parent', 'tours'));
     }
