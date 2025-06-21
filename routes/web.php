@@ -72,6 +72,14 @@ Route::middleware(['auth', CheckRole::class . ':admin,editor,categoryMng,tourMng
         Route::resource('booking', BookingController::class);
 
 });
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/clear', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    return '✅ Đã clear config và cache!';
+});
+
 
 
 
