@@ -13,10 +13,19 @@ class UserController extends Controller
         $users = User::paginate(10);
         return view('users.index', compact('users'));
     }
-    public function login()
-    {
-        return view('auth.login');
+    public function login(Request $request)
+{
+    if ($request->has('redirect')) {
+        session(['redirect_after_login' => $request->redirect]);
     }
+
+    return view('auth.login');
+}
+
+    // public function login()
+    // {
+    //     return view('auth.login');
+    // }
 
     public function check_login(Request $request)
 {
@@ -28,13 +37,24 @@ class UserController extends Controller
     $data = $request->only('email','password');
 
     if(auth()->attempt($data)) {
-        // Sau khi đăng nhập thành công, kiểm tra role
-        if (auth()->user()->role === 'admin') {
-            return redirect()->route('admin')->with('ok', 'Đăng nhập với vai trò admin');
-        } else {
-            return redirect()->route('hom')->with('ok', 'Đăng nhập thành công');
-        }
+    $redirectUrl = session('redirect_after_login', route('hom')); // fallback nếu không có
+    session()->forget('redirect_after_login');
+
+    if (auth()->user()->role === 'admin') {
+        return redirect()->route('admin')->with('ok', 'Đăng nhập với vai trò admin');
+    } else {
+        return redirect($redirectUrl)->with('ok', 'Đăng nhập thành công');
     }
+}
+
+    // if(auth()->attempt($data)) {
+    //     // Sau khi đăng nhập thành công, kiểm tra role
+    //     if (auth()->user()->role === 'admin') {
+    //         return redirect()->route('admin')->with('ok', 'Đăng nhập với vai trò admin');
+    //     } else {
+    //         return redirect()->route('hom')->with('ok', 'Đăng nhập thành công');
+    //     }
+    // }
 
     return redirect()->back()->with('no', 'Email hoặc mật khẩu không đúng');
 }

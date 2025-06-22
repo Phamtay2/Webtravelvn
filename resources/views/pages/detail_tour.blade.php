@@ -266,9 +266,20 @@
                                                                         
 
                                                                     </div>
-                                                                    <button type="submit"
+                                                                     @if(auth()->check())
+                                                                <!-- Đã đăng nhập: mở modal -->
+                                                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal_booking">
+                                                                    Đăng ký tour
+                                                                </a>
+                                                            @else
+                                                                <!-- Chưa login: chuyển đến trang login -->
+                                                                <a href="{{ route('user.login', ['redirect' => url()->current()]) }}" class="btn btn-primary">
+                                                                    Đăng ký tour
+                                                                </a>
+                                                            @endif
+                                                                    {{-- <button type="submit"
                                                                             class="btn btn-primary" style="float:right">Đăng ký
-                                                                            tour</button><br>
+                                                                            tour</button><br> --}}
                                                                 </form>
                                                             </div>
                                                             <div class="modal-footer">

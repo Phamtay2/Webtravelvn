@@ -47,7 +47,9 @@
                             <th scope="row"><a href="{{ route('gallery.edit', [$tour->id]) }}">Thêm ảnh</a></th>
                             <th scope="row"><a href="{{ route('schedule.edit', [$tour->id]) }}">Thêm lịch trình</a></th>
                             <td>{{ $tour->title }}</td>
-                            <td>{{ $tour->category->title }}</td>
+                            <td>{{ $tour->category?->title ?? 'Không có danh mục' }}</td>
+
+                            {{-- <td>{{ $tour->category->title }}</td> --}}
                             <td>{{ number_format($tour->price, 0, ',', '.') }}vnd
                                 <button type="button" data-tour_id="{{ $tour->id }}"
                                     class="btn btn-primary btn-create-price" data-toggle="modal" data-target="#themgia">
