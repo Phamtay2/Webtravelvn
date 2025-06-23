@@ -65,10 +65,7 @@
                                                     <span class="price-sell">{{ number_format($tour->price, 0, ',', '.') }}
                                                         VNĐ
                                                     </span>
-                                                    {{-- Nút xem --}}
-                                                        <a href="{{ route('chi-tiet-tour', [$tour->slug]) }}" class="btn btn-info" style="margin-top: 10px; display: inline-block;">
-                                                            Xem
-                                                        </a>
+                                                    
                                                 </div>
                                                 
                                             </div>
