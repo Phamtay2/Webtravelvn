@@ -26,7 +26,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Số lượng tour</label>
+                    <label for="exampleInputEmail1">Số lượng</label>
                     <input type="text" class="form-control" name="quantity" id="exampleInputEmail1" placeholder="....">
 
                 </div>
